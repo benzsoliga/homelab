@@ -1,0 +1,20 @@
+# Runtime data - not configuration
+pihole/etc-pihole/
+pihole/etc-dnsmasq.d/
+jellyfin/config/
+jellyfin/cache/
+unbound/conf/
+uptime-kuma/data/
+
+# Secrets - never commit
+.env
+*.env
+!.env.example
+*.key
+*.pem
+secrets/
+
+# Backups and editor cruft
+*.bak
+*~
+*.swp

@@ -1,0 +1,8 @@
+services:
+  unbound:
+    container_name: unbound
+    image: mvance/unbound:latest
+    network_mode: host
+    volumes:
+      - './conf:/opt/unbound/etc/unbound'
+    restart: unless-stopped
