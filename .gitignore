@@ -6,6 +6,7 @@ jellyfin/cache/
 unbound/conf/*.pid
 unbound/conf/root.key
 unbound/conf/var/
+unbound/conf/dev/
 uptime-kuma/data/
 
 # Secrets - never commit

@@ -1,14 +1,14 @@
 #!/bin/bash
 set -e
+source "$(dirname "$0")/backup.env"
 STAMP=$(date +%Y%m%d-%H%M)
 DEST=/home/bz/backups/homelab-$STAMP
 mkdir -p "$DEST"
 
-cp -a /home/bz/homelab "$DEST/homelab"
 cp /etc/systemd/logind.conf "$DEST/"
 ufw status verbose > "$DEST/ufw-rules.txt"
 nmcli connection show > "$DEST/nmcli-connections.txt"
-nmcli connection show "<Wifi-SSID>" > "$DEST/nmcli-wifi-profile.txt"
+nmcli connection show "$WIFI_SSID" > "$DEST/nmcli-wifi-profile.txt"
 nmcli connection show "Wired connection 1" > "$DEST/nmcli-wired-profile.txt"
 docker ps -a > "$DEST/docker-containers.txt"
 
