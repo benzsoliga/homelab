@@ -3,7 +3,9 @@ pihole/etc-pihole/
 pihole/etc-dnsmasq.d/
 jellyfin/config/
 jellyfin/cache/
-unbound/conf/
+unbound/conf/*.pid
+unbound/conf/root.key
+unbound/conf/var/
 uptime-kuma/data/
 
 # Secrets - never commit
