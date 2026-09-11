@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 source "$(dirname "$0")/backup.env"
 STAMP=$(date +%Y%m%d-%H%M)
 DEST=/home/bz/backups/homelab-$STAMP
@@ -15,11 +15,17 @@ nmcli connection show "Wired connection 1" > "$DEST/nmcli-wired-profile.txt"
 docker ps -a > "$DEST/docker-containers.txt"
 lsblk -f > "$DEST/lsblk.txt"
 
+trap 'docker start jellyfin >/dev/null 2>&1 || true' EXIT
 docker stop jellyfin >/dev/null 2>&1 || true
 tar czf "$ARCHIVE" \
   --exclude=homelab/jellyfin/config/metadata \
   --exclude=homelab/jellyfin/config/log \
   --exclude=homelab/jellyfin/cache \
+  --exclude=homelab/jellyfin/config/data/introskipper \
+  --exclude=homelab/jellyfin/config/data/subtitles \
+  --exclude=homelab/jellyfin/config/data/splashscreen.png \
+  --exclude=homelab/pihole/etc-pihole/gravity_old.db \
+  --exclude=homelab/pihole/etc-pihole/listsCache \
   --exclude=backups \
   -C /home/bz homelab \
   -C /home/bz/backups "homelab-$STAMP"
