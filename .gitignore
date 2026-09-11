@@ -22,3 +22,7 @@ secrets/
 *~
 *.swp
 scripts/clean-movies.sh
+unbound/conf/root.key
+unbound/conf/unbound.pid
+unbound/conf/dev/
+unbound/conf/var/
