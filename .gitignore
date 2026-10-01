@@ -26,3 +26,5 @@ unbound/conf/root.key
 unbound/conf/unbound.pid
 unbound/conf/dev/
 unbound/conf/var/
+sonarr/config/
+downloader/qbittorrent/config/
